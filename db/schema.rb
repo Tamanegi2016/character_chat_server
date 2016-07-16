@@ -13,21 +13,19 @@
 ActiveRecord::Schema.define(version: 20160716072854) do
 
   create_table "chats", force: :cascade do |t|
-    t.integer  "users_id"
-    t.integer  "talks_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["talks_id"], name: "index_chats_on_talks_id"
-    t.index ["users_id"], name: "index_chats_on_users_id"
+    t.integer  "no_session_users_id"
+    t.integer  "no_session_talks_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["no_session_talks_id"], name: "index_chats_on_no_session_talks_id"
+    t.index ["no_session_users_id"], name: "index_chats_on_no_session_users_id"
   end
 
   create_table "friends", force: :cascade do |t|
-    t.integer  "friends_id", null: false
-    t.integer  "users_id",   null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "friends_id",          null: false
+    t.integer "no_session_users_id", null: false
     t.index ["friends_id"], name: "index_friends_on_friends_id"
-    t.index ["users_id"], name: "index_friends_on_users_id"
+    t.index ["no_session_users_id"], name: "index_friends_on_no_session_users_id"
   end
 
   create_table "no_session_talks", force: :cascade do |t|
