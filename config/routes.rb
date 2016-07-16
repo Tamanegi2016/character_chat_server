@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  match '/friendlist/:user_id', to: 'api#friends', via: 'get'
   #devise_for :talks
   #devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

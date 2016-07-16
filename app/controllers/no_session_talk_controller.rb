@@ -1,2 +1,0 @@
-class NoSessionTalkController < ApplicationController
-end

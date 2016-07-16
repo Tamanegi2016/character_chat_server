@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20160716072854) do
   end
 
   create_table "friends", force: :cascade do |t|
-    t.integer "to_user_id_id",       null: false
-    t.integer "no_session_users_id", null: false
-    t.integer "from_user_id_id",     null: false
-    t.index ["from_user_id_id"], name: "index_friends_on_from_user_id_id"
+    t.integer "to_user_id"
+    t.integer "no_session_users_id"
+    t.integer "from_user_id"
+    t.index ["from_user_id"], name: "index_friends_on_from_user_id"
     t.index ["no_session_users_id"], name: "index_friends_on_no_session_users_id"
-    t.index ["to_user_id_id"], name: "index_friends_on_to_user_id_id"
+    t.index ["to_user_id"], name: "index_friends_on_to_user_id"
   end
 
   create_table "no_session_talks", force: :cascade do |t|
