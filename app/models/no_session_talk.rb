@@ -1,0 +1,2 @@
+class NoSessionTalk < ApplicationRecord
+end
