@@ -10,13 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160716052605) do
+ActiveRecord::Schema.define(version: 20160716072854) do
+
+  create_table "chats", force: :cascade do |t|
+    t.integer  "no_session_talks_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["no_session_talks_id"], name: "index_chats_on_no_session_talks_id"
+  end
+
+  create_table "friends", force: :cascade do |t|
+    t.integer "to_user_id_id",       null: false
+    t.integer "no_session_users_id", null: false
+    t.integer "from_user_id_id",     null: false
+    t.index ["from_user_id_id"], name: "index_friends_on_from_user_id_id"
+    t.index ["no_session_users_id"], name: "index_friends_on_no_session_users_id"
+    t.index ["to_user_id_id"], name: "index_friends_on_to_user_id_id"
+  end
 
   create_table "no_session_talks", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "message"
+    t.integer  "chats_id"
     t.integer  "users_id"
+    t.index ["chats_id"], name: "index_no_session_talks_on_chats_id"
     t.index ["users_id"], name: "index_no_session_talks_on_users_id"
   end
 
