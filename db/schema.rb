@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 20160716052605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "message"
-    t.integer  "user_id"
+    t.integer  "users_id"
+    t.index ["users_id"], name: "index_no_session_talks_on_users_id"
   end
 
   create_table "no_session_users", force: :cascade do |t|
