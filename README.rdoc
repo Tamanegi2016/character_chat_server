@@ -18,8 +18,15 @@
 
 * Deployment instructions
 
-* ...
+             Prefix Verb URI Pattern                                  Controller#Action
+                    GET  /friendlist/:user_id(.:format)               api#friends
+                    POST /friend/:user_id/:friend_id(.:format)        api#become_friend
+                    POST /talk/:user_id/:friend_id/:message(.:format) api#talk
+get_users_from_name GET  /get_users_from_name(.:format)               api#get_users_from_name
+       search_users GET  /search_users(.:format)                      api#get_users
+                    GET  /chat/:friend_id(.:format)                   api#chat
+                    POST /profile/:user_id(.:format)                  api#profile_upload
+                    POST /friend/:name(.:format)                      api#regist
 
 
-Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
