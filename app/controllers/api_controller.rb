@@ -2,13 +2,39 @@ class ApiController < ApplicationController
   protect_from_forgery :except => [:become_friend, :talk, :profile_upload]
 
   def friends
-    render json: NoSessionUser.find(params[:user_id]).friends
+    resp = []
+    friend_list = NoSessionUser.find(params[:user_id]).friends
+    for friend in friend_list
+      hash = {}
+      hash['id'] = friend.id
+      hash['name'] = friend.name
+      hash['profile_url'] = friend.profile_url
+      queries1 = "to_user_id = '#{params[:user_id].to_i}' AND from_user_id = '#{friend.id}'"
+      queries2 = "from_user_id = '#{params[:user_id].to_i}' AND to_user_id = '#{friend.id}'"
+      q1list = Friend.where(queries1)
+      q2list = Friend.where(queries2)
+      if q1list.empty?
+        hash['friend_id'] = q2list[0].id
+      else
+        hash['friend_id'] = q1list[0].id
+      end
+      message = NoSessionTalk.where(friend_id: hash['friend_id']).last
+      if message.nil?
+        hash['message'] = ''
+      else
+        hash['message'] = message.message
+      end
+      resp.push(hash)
+    end
+    resp.uniq!
+    render json: resp
   end
 
   def become_friend
-    queries = "to_user_id = '#{params[:user_id].to_i}' AND from_user_id = '#{params[:friend_id].to_i}'"
+    queries1 = "to_user_id = '#{params[:user_id].to_i}' AND from_user_id = '#{params[:friend_id].to_i}'"
+    queries2 = "from_user_id = '#{params[:user_id].to_i}' AND to_user_id = '#{params[:friend_id].to_i}'"
     friend = []
-    if Friend.where(queries).empty?
+    if Friend.where(queries1).empty? and Friend.where(queries2).empty?
       friend = Friend.new(to_user_id: params[:user_id],from_user_id: params[:friend_id])
       friend.save
     end
