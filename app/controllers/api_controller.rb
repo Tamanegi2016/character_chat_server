@@ -47,4 +47,16 @@ class ApiController < ApplicationController
     user.profile_url = params[:profile]
     render json: {profile_url: user.profile_url.url}
   end
+
+  def get_users_from_name
+    render json: NoSessionUser.where(name: params[:user_name])
+  end
+  
+  def get_users
+    if params[:query]
+      render json: NoSessionUser.where("name like '" + params[:query] + "%'")
+    else 
+      render json: NoSessionUser.all()
+    end
+  end
 end

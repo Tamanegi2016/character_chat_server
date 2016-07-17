@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   match '/friendlist/:user_id', to: 'api#friends', via: 'get'
   match '/friend/:user_id/:friend_id', to: 'api#become_friend', via: 'post'
   match '/talk/:user_id/:friend_id/:message', to: 'api#talk', via: 'post'
+
+  match '/get_users_from_name', to: 'api#get_users_from_name', via: 'get'
+  match '/search_users', to: 'api#get_users', via: 'get'
+
   match '/chat/:friend_id', to: 'api#chat', via: 'get'
   match '/profile/:user_id', to: 'api#profile_upload', via: 'post'
   #devise_for :talks
