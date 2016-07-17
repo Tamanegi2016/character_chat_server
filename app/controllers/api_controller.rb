@@ -41,4 +41,15 @@ class ApiController < ApplicationController
     end
     render json: chat
   end
+
+  def regist
+    queries = "name = '#{params[:name]}'"
+    new_user = []
+    if NoSessionUser.where(queries).empty?
+      new_user = NoSessionUser.new(name: params[:name])
+      new_user.save
+    end
+    render json: new_user
+  end
+
 end
