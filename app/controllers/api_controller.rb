@@ -34,8 +34,9 @@ class ApiController < ApplicationController
     queries1 = "to_user_id = '#{params[:user_id].to_i}' AND from_user_id = '#{params[:friend_id].to_i}'"
     queries2 = "from_user_id = '#{params[:user_id].to_i}' AND to_user_id = '#{params[:friend_id].to_i}'"
     friend = []
-    if Friend.where(queries1).empty? and Friend.where(queries2).empty?
-      friend = Friend.new(to_user_id: params[:user_id],from_user_id: params[:friend_id])
+    if Friend.where(queries1).empty? && Friend.where(queries2).empty?
+      friend = Friend.new(to_user_id: params[:user_id],
+                          from_user_id: params[:friend_id])
       friend.save
     end
     render json: friend
@@ -72,7 +73,7 @@ class ApiController < ApplicationController
     user = NoSessionUser.find(params[:user_id])
     user.profile_url = params[:profile]
     user.save
-    render json: {profile_url: user.profile_url.url}
+    render json: { profile_url: user.profile_url.url }
   end
 
   def regist
