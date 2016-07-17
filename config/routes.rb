@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   match '/friend/:user_id/:friend_id', to: 'api#become_friend', via: 'post'
   match '/talk/:user_id/:friend_id/:message', to: 'api#talk', via: 'post'
   match '/chat/:friend_id', to: 'api#chat', via: 'get'
+  match '/profile/:user_id', to: 'api#profile_upload', via: 'post'
   #devise_for :talks
   #devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  #   get 'products/:id' =>x 'catalog#view'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

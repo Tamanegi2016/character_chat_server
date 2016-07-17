@@ -1,4 +1,5 @@
 class NoSessionUser < ApplicationRecord
+  mount_uploader :profile_url, ProfileImgUploader
   # has_many :no_session_users , through: :friend
   has_many :no_session_talks,
            dependent: :destroy

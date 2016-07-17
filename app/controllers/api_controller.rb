@@ -1,5 +1,5 @@
 class ApiController < ApplicationController
-  protect_from_forgery :except => [:become_friend, :talk]
+  protect_from_forgery :except => [:become_friend, :talk, :profile_upload]
 
   def friends
     render json: NoSessionUser.find(params[:user_id]).friends
@@ -40,5 +40,11 @@ class ApiController < ApplicationController
       resp.push(hash)
     end
     render json: chat
+  end
+
+  def profile_upload
+    user = NoSessionUser.find(params[:user_id])
+    user.profile_url = params[:profile]
+    render json: {profile_url: user.profile_url.url}
   end
 end
