@@ -4,4 +4,5 @@ class CreateFriends < ActiveRecord::Migration[5.0]
       t.integer :to_user, :null => false
       t.integer :from_user, :null => false
       t.timestamp
+  end
 end
