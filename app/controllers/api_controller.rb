@@ -45,6 +45,7 @@ class ApiController < ApplicationController
   def profile_upload
     user = NoSessionUser.find(params[:user_id])
     user.profile_url = params[:profile]
+    user.save
     render json: {profile_url: user.profile_url.url}
   end
 
