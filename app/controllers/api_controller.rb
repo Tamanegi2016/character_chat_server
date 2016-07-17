@@ -42,6 +42,7 @@ class ApiController < ApplicationController
     render json: chat
   end
 
+<<<<<<< HEAD
   def regist
     queries = "name = '#{params[:name]}'"
     new_user = []
@@ -52,4 +53,17 @@ class ApiController < ApplicationController
     render json: new_user
   end
 
+=======
+  def get_users_from_name
+    render json: NoSessionUser.where(name: params[:user_name])
+  end
+
+  def get_users
+   if params[:query]
+     render json: NoSessionUser.where("name like '" + params[:query] + "%'")
+   else 
+     render json: NoSessionUser.all()
+   end
+  end
+>>>>>>> e17370c669f53f8fa6004f961014f2a3a90ed289
 end
