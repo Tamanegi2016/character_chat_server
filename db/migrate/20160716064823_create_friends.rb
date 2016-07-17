@@ -1,5 +1,7 @@
 class CreateFriends < ActiveRecord::Migration[5.0]
-      belongs_to :to_user, class_name: "CreateNoSessionUsers", foreign_key: :no_session_users_id
-      belongs_to :from_user, class_name: "CreateNoSessionUsers", foreign_key: :no_session_users_id
+  def change
+    create_table :friends do |t|
+      t.integer :to_user, :null => false
+      t.integer :from_user, :null => false
       t.timestamp
 end
