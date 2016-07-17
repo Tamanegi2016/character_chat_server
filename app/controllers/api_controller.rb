@@ -5,7 +5,7 @@ class ApiController < ApplicationController
   end
 
   def become_friend
-    friend = Friend.new(to_user_id: params[:user_id],from_user_id: params[:frieend_id])
+    friend = Friend.new(to_user_id: params[:user_id],from_user_id: params[:friend_id])
     friend.save()
   end
 
