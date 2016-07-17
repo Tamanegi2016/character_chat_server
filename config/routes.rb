@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   match '/chat/:friend_id', to: 'api#chat', via: 'get'
   match '/profile/:user_id', to: 'api#profile_upload', via: 'post'
+  match '/friend/:name', to: 'api#regist', via: 'post'
   #devise_for :talks
   #devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

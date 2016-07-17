@@ -49,6 +49,16 @@ class ApiController < ApplicationController
     render json: {profile_url: user.profile_url.url}
   end
 
+  def regist
+    queries = "name = '#{params[:name]}'"
+    new_user = []
+    if NoSessionUser.where(queries).empty?
+      new_user = NoSessionUser.new(name: params[:name])
+      new_user.save
+    end
+    render json: new_user
+  end
+
   def get_users_from_name
     render json: NoSessionUser.where(name: params[:user_name])
   end
