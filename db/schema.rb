@@ -14,21 +14,17 @@ ActiveRecord::Schema.define(version: 20160716064823) do
 
   create_table "friends", force: :cascade do |t|
     t.integer "to_user_id"
-    t.integer "no_session_users_id"
     t.integer "from_user_id"
-    t.index ["from_user_id"], name: "index_friends_on_from_user_id"
-    t.index ["no_session_users_id"], name: "index_friends_on_no_session_users_id"
-    t.index ["to_user_id"], name: "index_friends_on_to_user_id"
   end
 
   create_table "no_session_talks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "no_session_user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.string   "message"
-    t.integer  "friends_id"
-    t.integer  "users_id"
-    t.index ["friends_id"], name: "index_no_session_talks_on_friends_id"
-    t.index ["users_id"], name: "index_no_session_talks_on_users_id"
+    t.index ["friend_id"], name: "index_no_session_talks_on_friend_id"
+    t.index ["no_session_user_id"], name: "index_no_session_talks_on_no_session_user_id"
   end
 
   create_table "no_session_users", force: :cascade do |t|

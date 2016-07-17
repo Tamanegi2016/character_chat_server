@@ -5,6 +5,8 @@ Rails.application.routes.draw do
 
   match '/get_users_from_name', to: 'api#get_users_from_name', via: 'get'
   match '/search_users', to: 'api#get_users', via: 'get'
+
+  match '/chat/:friend_id', to: 'api#chat', via: 'get'
   #devise_for :talks
   #devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
