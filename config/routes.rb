@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   match '/friendlist/:user_id', to: 'api#friends', via: 'get'
   match '/friend/:user_id/:friend_id', to: 'api#become_friend', via: 'post'
   match '/talk/:user_id/:friend_id/:message', to: 'api#talk', via: 'post'
+
+  match '/get_users_from_name', to: 'api#get_users_from_name', via: 'get'
+  match '/search_users', to: 'api#get_users', via: 'get'
   #devise_for :talks
   #devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

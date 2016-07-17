@@ -32,4 +32,16 @@ class ApiController < ApplicationController
     chat_id = 1
     render json: Chat.find(chat_id).no_session_talks
   end
+
+  def get_users_from_name
+    render json: NoSessionUser.where(name: params[:user_name])
+  end
+
+  def get_users
+   if params[:query]
+     render json: NoSessionUser.where("name like '" + params[:query] + "%'")
+   else 
+     render json: NoSessionUser.all()
+   end
+  end
 end
