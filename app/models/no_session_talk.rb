@@ -1,3 +1,3 @@
 class NoSessionTalk < ApplicationRecord
-  belongs_to :chat
+  belongs_to :friend
 end
