@@ -60,12 +60,12 @@ class ApiController < ApplicationController
     for message in chat
       hash = {}
       hash["name"] = message.no_session_user.name
-      hash["url"] = message.no_session_user.profile_url
+      hash["url"] = message.no_session_user.profile_url.url
       hash["message"] = message.message
-      hash["createde_at"] = message.created_at
+      hash["created_at"] = message.created_at
       resp.push(hash)
     end
-    render json: chat
+    render json: resp
   end
 
   def profile_upload
