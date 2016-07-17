@@ -47,7 +47,7 @@ class ApiController < ApplicationController
     if Friend.exists?(id: params[:friend_id])
       talk = NoSessionTalk.new(
         no_session_user_id: params[:user_id],
-        friend_id: params[:user_id],
+        friend_id: params[:friend_id],
         message: params[:message]
       )
       talk.save
